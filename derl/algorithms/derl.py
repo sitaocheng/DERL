@@ -53,13 +53,19 @@ class DERL:
         total_reward = 0
         
         for _ in range(num_episodes):
-            state = env.reset()
+            result = env.reset()
+            state = result[0] if isinstance(result, tuple) else result
             done = False
             episode_reward = 0
             
             while not done:
                 action = policy.get_action(state)
-                next_state, reward, done, _ = env.step(action)
+                step_result = env.step(action)
+                if len(step_result) == 5:
+                    next_state, reward, terminated, truncated, _ = step_result
+                    done = terminated or truncated
+                else:
+                    next_state, reward, done, _ = step_result
                 episode_reward += reward
                 state = next_state
             
@@ -92,13 +98,19 @@ class DERL:
             
             # RL Update
             for episode in range(num_episodes_per_iter):
-                state = env.reset()
+                result = env.reset()
+                state = result[0] if isinstance(result, tuple) else result
                 done = False
                 episode_reward = 0
                 
                 while not done:
                     action = self.rl_agent.select_action(state)
-                    next_state, reward, done, _ = env.step(action)
+                    step_result = env.step(action)
+                    if len(step_result) == 5:
+                        next_state, reward, terminated, truncated, _ = step_result
+                        done = terminated or truncated
+                    else:
+                        next_state, reward, done, _ = step_result
                     
                     self.rl_agent.store_transition(state, action, reward, 
                                                    next_state, done)

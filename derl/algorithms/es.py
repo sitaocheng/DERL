@@ -29,11 +29,8 @@ class EvolutionStrategy:
     
     def _create_perturbed_policy(self, noise):
         """Create a perturbed version of the policy"""
-        perturbed = type(self.policy)(
-            *[arg for arg in self.policy.__dict__.values() 
-              if isinstance(arg, int)][:3]
-        )
-        perturbed.load_state_dict(self.policy.state_dict())
+        import copy
+        perturbed = copy.deepcopy(self.policy)
         
         with torch.no_grad():
             for name, param in perturbed.named_parameters():
