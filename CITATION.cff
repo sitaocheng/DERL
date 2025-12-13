@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "DERL: Differentiable Evolutionary Reinforcement Learning"
+version: 0.1.0
+date-released: 2024-01-01
+url: "https://github.com/sitaocheng/DERL"
+authors:
+  - family-names: "DERL Team"
+type: software
+keywords:
+  - reinforcement-learning
+  - evolutionary-algorithms
+  - deep-learning
+  - machine-learning
+license: MIT
