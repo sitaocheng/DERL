@@ -18,6 +18,7 @@ class ReplayBuffer:
     
     def sample(self, batch_size):
         """Sample a batch of experiences"""
+        batch_size = min(batch_size, len(self.buffer))
         indices = np.random.choice(len(self.buffer), batch_size, replace=False)
         batch = [self.buffer[idx] for idx in indices]
         

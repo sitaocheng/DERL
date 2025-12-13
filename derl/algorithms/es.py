@@ -1,3 +1,4 @@
+import copy
 import numpy as np
 import torch
 
@@ -29,7 +30,6 @@ class EvolutionStrategy:
     
     def _create_perturbed_policy(self, noise):
         """Create a perturbed version of the policy"""
-        import copy
         perturbed = copy.deepcopy(self.policy)
         
         with torch.no_grad():
