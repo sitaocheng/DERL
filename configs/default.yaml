@@ -1,0 +1,36 @@
+# Default DERL Configuration
+
+# Environment settings
+env:
+  name: 'Pendulum-v1'
+  max_episode_steps: 200
+
+# Evolution Strategy parameters
+es:
+  population_size: 50
+  sigma: 0.1
+  learning_rate: 0.01
+
+# Reinforcement Learning parameters
+rl:
+  lr_policy: 0.0003
+  lr_value: 0.0003
+  gamma: 0.99
+  batch_size: 256
+  buffer_size: 1000000
+
+# Neural network architecture
+network:
+  hidden_dim: 256
+
+# Training parameters
+training:
+  num_iterations: 1000
+  num_episodes_per_iter: 10
+  log_interval: 10
+  save_interval: 100
+
+# DERL specific
+derl:
+  rl_weight: 0.5
+  es_weight: 0.5
