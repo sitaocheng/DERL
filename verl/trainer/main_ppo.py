@@ -175,8 +175,13 @@ class TaskRunner:
         )
         # Initialize the workers of the trainer.
         trainer.init_workers()
-        # Start the training process.
-        trainer.fit()
+        # Start the training process. training outer-loop or inner-loop
+        if "inner" in config.trainer.outer.lower() or config.trainer.outer.lower()=="inner":
+            # In this case, we only need to run the rollout process.
+            trainer.fit()
+        else:
+            # In this case, we run the full training process.
+            trainer.fit_new()
 
 
 def create_rl_dataset(data_paths, data_config, tokenizer, processor):

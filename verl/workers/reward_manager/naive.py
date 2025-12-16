@@ -25,7 +25,7 @@ from verl.workers.reward_manager import register
 class NaiveRewardManager:
     """The reward manager."""
 
-    def __init__(self, tokenizer, num_examine, compute_score=None, reward_fn_key="data_source") -> None:
+    def __init__(self, custom_fn, tokenizer, num_examine, compute_score=None, reward_fn_key="data_source") -> None:
         """
         Initialize the NaiveRewardManager instance.
 
@@ -39,6 +39,8 @@ class NaiveRewardManager:
         self.num_examine = num_examine  # the number of batches of decoded responses to print to the console
         self.compute_score = compute_score or default_compute_score
         self.reward_fn_key = reward_fn_key  # Store the key for accessing the data source
+        self.custom_reward = custom_fn
+        print(self.custom_reward)
 
     def __call__(self, data: DataProto, return_dict=False):
         """We will expand this function gradually based on the available datasets"""
@@ -78,6 +80,7 @@ class NaiveRewardManager:
             extra_info = data_item.non_tensor_batch.get("extra_info", None)
 
             score = self.compute_score(
+                custom_fn=self.custom_reward,
                 data_source=data_source,
                 solution_str=response_str,
                 ground_truth=ground_truth,

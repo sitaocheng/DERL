@@ -187,7 +187,7 @@ actor_rollout_ref:
     entropy_coeff: 0
     
     # Whether to use KL loss instead of KL reward penalty. True for GRPO
-    use_kl_loss: false
+    use_kl_loss: true
     
     # Whether to use torch.compile()
     use_torch_compile: true
@@ -199,7 +199,7 @@ actor_rollout_ref:
     kl_loss_type: low_var_kl
     
     # Number of PPO epochs per batch
-    ppo_epochs: 1
+    ppo_epochs: 2
     
     # Shuffle training data across PPO epochs
     shuffle: false
@@ -603,7 +603,7 @@ critic:
   ulysses_sequence_parallel_size: 1
 
   # Number of PPO epochs per batch
-  ppo_epochs: ${actor_rollout_ref.actor.ppo_epochs}
+  ppo_epochs: 1
 
   # Shuffle training data across PPO epochs
   shuffle: ${actor_rollout_ref.actor.shuffle}
@@ -845,7 +845,7 @@ trainer:
   del_local_ckpt_after_load: False
 
   # Default local directory for saving checkpoints
-  default_local_dir: checkpoints/${trainer.project_name}/${trainer.experiment_name}
+  default_local_dir: /mnt/shared-storage-user/formalverification-shared/chengsitao/projects/verl/checkpoints/${trainer.project_name}/${trainer.experiment_name}
 
   # Maximum number of actor checkpoints to keep
   max_actor_ckpt_to_keep: null

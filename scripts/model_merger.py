@@ -60,6 +60,8 @@ from transformers import (
     PretrainedConfig,
 )
 
+os.environ['DS_SKIP_CUDA_CHECK'] = '1' 
+
 try:
     # for torch 2.5+
     from torch.distributed.tensor import DTensor

@@ -14,9 +14,10 @@
 # from . import gsm8k, math, prime_math, prime_code
 
 from verl.utils.import_utils import deprecated
+import torch
 
 
-def default_compute_score(data_source, solution_str, ground_truth, extra_info=None, sandbox_fusion_url=None, concurrent_semaphore=None):
+def default_compute_score(custom_fn, data_source, solution_str, ground_truth, extra_info=None, sandbox_fusion_url=None, concurrent_semaphore=None):
     """Compute the score for a given solution based on the data source.
 
     Args:
@@ -32,14 +33,35 @@ def default_compute_score(data_source, solution_str, ground_truth, extra_info=No
     Raises:
         NotImplementedError: If the reward function is not implemented for the given data source.
     """
-    if data_source == "openai/gsm8k":
+    if data_source in ["openai/gsm8k", "lighteval/MATH", "DigitalLearningGmbH/MATH-lighteval"]:
+
+        from . import meta_reward_grpo
+        g1, g2, g3, g4 = meta_reward_grpo.get_meta_reward(solution_str, ground_truth)
+
+        try:
+            res = eval(custom_fn)  # custom_fn is a string expression like "g1 + 0.5 * (g2 - 0.5 * (g3 - 0.5 * (g4 + 0.5)))"
+        except Exception as e:
+            print("exception: ", e)
+            res = 0.0
+
+        res = torch.tensor(res, dtype=torch.float32)
+        res = float(res)
+
+    elif data_source == "openai/gsm8k":
+        # from . import meta_reward
+
+        # res = meta_reward.compute_score(solution_str, ground_truth)
         from . import gsm8k
 
         res = gsm8k.compute_score(solution_str, ground_truth)
     elif data_source in ["lighteval/MATH", "DigitalLearningGmbH/MATH-lighteval"]:
+        # from . import meta_reward
+
+        # res = meta_reward.compute_score(solution_str, ground_truth)
         from . import math
 
         res = math.compute_score(solution_str, ground_truth)
+
         # [Optional] Math-Verify Integration
         # For enhanced accuracy, consider utilizing Math-Verify (https://github.com/huggingface/Math-Verify).
         # Note: Math-Verify needs to be manually installed via pip: `pip install math-verify`.
@@ -94,12 +116,13 @@ def default_compute_score(data_source, solution_str, ground_truth, extra_info=No
         return float(res[0])
 
 
+# edit by DERL
 @deprecated("verl.utils.reward_score.default_compute_score")
-def _default_compute_score(data_source, solution_str, ground_truth, extra_info=None, sandbox_fusion_url=None, concurrent_semaphore=None):
+def _default_compute_score(custom_fn, data_source, solution_str, ground_truth, extra_info=None, sandbox_fusion_url=None, concurrent_semaphore=None):
     """
     Legacy function API to be deprecated. Please use `default_compute_score` instead.
     """
-    return default_compute_score(data_source, solution_str, ground_truth, extra_info, sandbox_fusion_url, concurrent_semaphore)
+    return default_compute_score(custom_fn, data_source, solution_str, ground_truth, extra_info, sandbox_fusion_url, concurrent_semaphore)
 
 
 __all__ = ["default_compute_score"]
