@@ -278,6 +278,7 @@ if __name__ == "__main__":
     parser.add_argument("--output_file_path", type=str, default="outputs/eval_math.json", help="Path to save the evaluation results.")
     parser.add_argument("--loop_num", type=int, required=True)
     parser.add_argument("--rollout_num", type=int, required=True)
+    parser.add_argument("--testing", type=bool, required=True)
     args = parser.parse_args()
 
     num_gpus = torch.cuda.device_count()
@@ -288,14 +289,10 @@ if __name__ == "__main__":
     print("模型加载完成。")
 
     sampling_params = SamplingParams(temperature=0.0, top_p=1.0, top_k=-1, max_tokens=1024, stop=["<|im_end|>"])
-    if 'test' in args.output_file_path:
+    if args.testing:
         test_file_path = ["./dataset/math/test.parquet", "./dataset/gsm8k/test.parquet"]
-    elif 'amc' in args.output_file_path:
-        test_file_path = ["./dataset/amc23/test.parquet"]
-    elif 'aime' in args.output_file_path:
-        test_file_path = ['./dataset/AIME_2024/test.parquet']
     else:
-        test_file_path = ["./dataset/math/train.parquet", "./dataset/gsm8k/train.parquet"]
+        test_file_path = ["./dataset/math/val.parquet", "./dataset/gsm8k/val.parquet"]
     
     for file in test_file_path:
         run_evaluation(llm, sampling_params, file, output_file_path=args.output_file_path, batch_size=1024)
