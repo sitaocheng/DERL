@@ -9,25 +9,16 @@
 </a><a href="https://github.com/sitaocheng/DERL">
   <img src="https://img.shields.io/badge/GITHUB-181717?style=for-the-badge&logo=github&logoColor=white" alt="Github">
 </a>
-
-</div>
-
-<hr>
-
-This repository contains the code accompanying the paper **Differentiable Evolutionary Reinforcement Learning**. The repo is built upon [veRL](https://github.com/volcengine/verl). We adopt GRPO for inner-loop and outer-loop evolution. The training loop is implemented by ourself, the group relative advantage calculation for outer-loop and the inner-loop training are adapted from VeRL original code.
-
-
-
-
-## Contents
-
 <p align="center">
 <a href="#overview">[Overview]</a>
 <a href="#quick-start">[Quick Start]</a>
 <a href="#file-descriptions">[File Discriptions]</a>
 <a href="#citation">[Citation]</a>
 </p>
+</div>
+<hr>
 
+This repository contains the code accompanying the paper **Differentiable Evolutionary Reinforcement Learning**. The repo is built upon [veRL](https://github.com/volcengine/verl). We adopt GRPO for inner-loop and outer-loop evolution. The training loop is implemented by ourself, the group relative advantage calculation for outer-loop and the inner-loop training are adapted from VeRL original code.
 
 ## Overview
 
