@@ -1,8 +1,38 @@
 # DERL
 
-We release the code for the paper [**Differentiable Evolutionary Reinforcement Learning**](https://arxiv.org/abs/2512.13399). 
 
-Models are available at [huggingface_repo](https://huggingface.co/DifferentiableEvolutionaryRL).
+
+<div align="center">
+
+<h1>Differentiable Evolutionary Reinforcement Learning</h1>
+
+<a href="https://arxiv.org/abs/2512.13399">
+  <img src="https://img.shields.io/badge/PAPER-ARXIV-b31b1b?style=for-the-badge&logo=arxiv&logoColor=white" alt="Paper">
+</a>
+
+<a href="https://huggingface.co/DifferentiableEvolutionaryRL">
+  <img src="https://img.shields.io/badge/DATASET%26MODEL-FFD21E?style=for-the-badge&logo=huggingface&logoColor=black" alt="Dataset & Model">
+</a>
+
+<a href="https://github.com/sitaocheng/DERL">
+  <img src="https://img.shields.io/badge/GITHUB-181717?style=for-the-badge&logo=github&logoColor=white" alt="Github">
+</a>
+
+<!-- <a href="https://twitter.com/your-account">
+  <img src="https://img.shields.io/badge/TWITTER-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white" alt="Twitter">
+</a> -->
+
+</div>
+
+<hr>
+
+This repository contains the code accompanying the paper **Differentiable Evolutionary Reinforcement Learning**. The repo is built upon [veRL](https://github.com/volcengine/verl). We adopt GRPO for inner-loop and outer-loop evolution, adapted from [VeRL](https://github.com/volcengine/verl). The training loop is implemented by ourself, the group relative advantage calculation for outer-loop and the inner-loop training are adapted from VeRL original code.
+
+<!-- The repository is organized around reproducible bash entrypoints located in `bash/`, grouped by the paper sections they support. -->
+
+<!-- We release the code for the paper [**Differentiable Evolutionary Reinforcement Learning**](https://arxiv.org/abs/2512.13399). 
+
+Models are available at [huggingface_repo](https://huggingface.co/DifferentiableEvolutionaryRL). -->
 
 Here is the main idea and results of DERL.
 ![DERL](figures/figure1.png)
@@ -10,7 +40,6 @@ Here is the main idea and results of DERL.
 Our bi-level evolutionary training is illustrated as follows.
 ![Bi-level Evolutionary Training](figures/figure2.png)
 
-We adopt GRPO for inner-loop and outer-loop evolution, adapted from [VeRL](https://github.com/volcengine/verl). The training loop is implemented by ourself, the group relative advantage calculation for outer-loop and the inner-loop training are adapted from VeRL original code.
 
 ## Quick Start
 
