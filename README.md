@@ -1,7 +1,3 @@
-# DERL
-
-
-
 <div align="center">
 
 <h1>Differentiable Evolutionary Reinforcement Learning</h1>
