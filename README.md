@@ -9,7 +9,7 @@
 <a href="https://arxiv.org/abs/2512.13399">
   <img src="https://img.shields.io/badge/PAPER-ARXIV-b31b1b?style=for-the-badge&logo=arxiv&logoColor=white" alt="Paper">
 </a><a href="https://huggingface.co/DifferentiableEvolutionaryRL">
-  <img src="https://img.shields.io/badge/DATASET%26MODEL-FFD21E?style=for-the-badge&logo=huggingface&logoColor=black" alt="Models">
+  <img src="https://img.shields.io/badge/MODELS-FFD21E?style=for-the-badge&logo=huggingface&logoColor=black" alt="Models">
 </a><a href="https://github.com/sitaocheng/DERL">
   <img src="https://img.shields.io/badge/GITHUB-181717?style=for-the-badge&logo=github&logoColor=white" alt="Github">
 </a>
