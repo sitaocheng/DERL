@@ -95,10 +95,10 @@ The group-normalized scores update the proposer with GRPO.
 If you find this repository useful, please cite our paper:
 
 ```bibtex
-@misc{cheng2025differentiableevolutionaryreinforcementlearning,
-      title={Differentiable Evolutionary Reinforcement Learning},
+@misc{cheng2026dualevolvingreinforcementlearningautomated,
+      title={Dual-Evolving Reinforcement Learning for Automated Reward Design},
       author={Sitao Cheng and Tianle Li and Xuhan Huang and Xunjian Yin and Difan Zou},
-      year={2025},
+      year={2026},
       eprint={2512.13399},
       archivePrefix={arXiv},
       primaryClass={cs.AI},
